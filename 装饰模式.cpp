@@ -11,7 +11,7 @@ using namespace std;
 class Component{
 public:
 	virtual void Operation() = 0;
-	~Component(){
+	virtual ~Component(){
 	}	
 };
 class ConCreteComponet:public Component{
