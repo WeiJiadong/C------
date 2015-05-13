@@ -1,25 +1,38 @@
-/*    单例模式
-*/ 
+//单例模式 
 #include <iostream>
-using namespace std;
-class A{
+using namespace std; 
+
+class Singleton{
 private:
-    A *p;
-    A(){}
+	int x, y;
+	static Singleton * p;
+    Singleton(int x = 0, int y = 0){
+    	this->x = x;
+    	this->x = x;
+	}	
 public:
-	A *get(){
-        return new A();
-    }
-    void test(){
-        cout << "A的测试程序..." << endl;    	
-	} 
+	static Singleton * Creat(int x, int y){
+		if(p == NULL){
+			return (p = new Singleton(x, y));
+		}
+	}
+	~Singleton(){
+		delete p;
+	}
 };
+
+Singleton * Singleton::p = NULL;
+
 int main(){
-    A *p = A::get();
-    
-    p->test();
-    
-    delete p;
-    
-    return 0;
-} 
+	Singleton * p, * p1;
+	
+	p1 = p = NULL;
+	
+	p = Singleton::Creat(3, 5);
+
+	p1 = Singleton::Creat(3, 5);		
+  
+    cout << p << endl << p1 << endl;
+	  
+	return 0;	
+}
